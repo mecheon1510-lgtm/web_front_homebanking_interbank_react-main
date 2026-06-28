@@ -5,6 +5,10 @@ import { useHBAuth } from '../hooks/useHBAuth.js'
 import { extractError } from '../utils/format.js'
 import Alert from '../components/ui/Alert.jsx'
 
+// ✅ CORREGIDO: Importación nativa de imágenes para Vite/Vercel
+import logoInterbank from '../img/Interbank_logo.png'
+import fondoPlaya from '../img/Fondo_Playa.jpg'
+
 export default function LoginPage() {
   const { login, isAuthenticated } = useHBAuth()
   const navigate = useNavigate()
@@ -56,8 +60,8 @@ export default function LoginPage() {
         background: '#fff'
       }}>
         <div style={{ maxWidth: 360, width: '100%' }}>
-          {/* Logo */}
-          <img src="/img/Interbank_logo.png" alt="Interbank" style={{ height: 50, marginBottom: 40 }} />
+          {/* ✅ CORREGIDO: Uso de la variable importada */}
+          <img src={logoInterbank} alt="Interbank" style={{ height: 50, marginBottom: 40 }} />
 
           <h1 style={{ fontSize: 28, fontWeight: 800, marginBottom: 8, color: 'var(--hb-text)' }}>Inicia sesión</h1>
           <p style={{ fontSize: 14, color: 'var(--hb-muted)', marginBottom: 28 }}>Accede a tu banca digital</p>
@@ -126,8 +130,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-
-
           <div style={{ textAlign: 'center', marginTop: 18 }}>
             <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--hb-primary)', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
               <ArrowLeft size={15} /> Volver al inicio
@@ -137,8 +139,9 @@ export default function LoginPage() {
       </div>
 
       {/* Derecha: Imagen de playa */}
+      {/* ✅ CORREGIDO: Uso dinámico de la imagen inyectada */}
       <div style={{
-        backgroundImage: 'url(/img/Fondo_Playa.jpg)',
+        backgroundImage: `url(${fondoPlaya})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
